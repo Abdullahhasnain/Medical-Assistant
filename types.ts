@@ -1,44 +1,38 @@
-export type ChatRole = 'user' | 'model';
+export type TaskType = "literature_review" | "hypothesis_generation" | "experiment_design" | "data_analysis" | "model_development" | "paper_draft" | "grant_proposal" | "summary";
 
-export type UserRole = 'Doctor' | 'Nurse' | 'Admin' | 'Staff';
-
-export interface User {
-  username: string;
-  name: string;
-  role: UserRole;
+export interface ResearchInput {
+  task_type: string;
+  domain: string;
+  context: string;
+  constraints: string;
+  deliverable_format: string;
+  citation_style: string;
 }
 
-export interface ChatMessage {
-  id: string;
-  role: ChatRole;
-  text: string;
-  image?: string; // base64 data string
-  timestamp: number;
+export interface Reference {
+  title: string;
+  authors: string;
+  year: string;
+  one_line_summary: string;
+  citation: string;
 }
 
-export interface MedicalRecord {
-  patient_id: string;
-  name: string;
-  age: string | number;
-  gender: string;
-  chief_complaint: string;
-  duration: string;
-  pain_severity_1to10: string | number;
-  pre_existing_conditions: string[];
-  reports_attached: boolean;
-  risk_category: string; // "Low", "Moderate", "High"
-  suggested_action: string;
-  timestamp: string;
+export interface Section {
+  heading: string;
+  content: string;
 }
 
-export enum RiskLevel {
-  LOW = 'Low',
-  MODERATE = 'Moderate',
-  HIGH = 'High',
-  UNKNOWN = 'Unknown'
+export interface CodeSnippet {
+  language: string;
+  description: string;
+  code: string;
 }
 
-export interface ProcessingState {
-  isTyping: boolean;
-  error: string | null;
+export interface ResearchOutput {
+  title: string;
+  summary: string;
+  sections: Section[];
+  references?: Reference[];
+  code_snippets?: CodeSnippet[];
+  notes?: string;
 }
